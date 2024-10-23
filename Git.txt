@@ -1,0 +1,244 @@
+                                                    Git Notes
+                                                    ---------
+COMMAND LINES
+-------------
+hostname : Display your computer's name.
+whoami : Display the name of the current user.
+pwd : Display the current directory (pwd = print working directory).
+
+Change Directories
+------------------
+cd : Change Directories used to navigate between directories.
+cd .. : Goes back to the upper-level directory. The alternative way would be to type the name of the parent folder. eg:$ cd <parent name>
+
+Note : Notice that the first directories that appear are . and . ., representing the current folder and the parent folder, respectively.
+
+cd / : Navigate directly to the root path.
+cd ~ : Navigate directly to our user's home path.
+cd - : Navigate directly to the previous working directory.
+
+File Listing
+------------
+ls : Display a list of files inside the active folder/directory. You can and should use ls a lot to see where you are, and what 
+      files/folders exist in the current directory before executing commands.
+ls -l : Add -l to get a detailed listing.
+ls -t : Add -t to sort the results by file time.
+ls -S : Add -S to sort by file size.
+ls -r : Add -r to reverse the sorting.
+ls -a : Add -a to include hidden files.
+
+Note : You could combine them all to improve your listing. If you type ls -la, the result will be the detailed list of files, 
+       including the hidden ones.
+
+Create and Remove Folders
+-------------------------
+mkdir <foldername> : Create a new folder.
+rmdir <foldername> : Remove an empty folder.
+
+Note: You can remove any folder as long as the folder is empty. If it has files in, you'll have to delete these files before you
+      can remove the folder using rmdir. There is a shorter way to do this written in remove files.
+
+Create and Remove Files
+-----------------------
+touch <new-filename.fileExtension> : Create a new, blank file.
+
+Note : Shorthand for multiple new files - touch <newfile1.fileExtension> <newfile2.fileExtension> etc..
+       
+      Also, we can combine two or more commands in one line, and save some keystrokes:
+      $ mkdir & cd my-files ==> create directory my-files and enter it
+      $ touch file-1.txt file-2.txt file-3.txt ==> create files
+
+rm <filename.fileExtension> : Removes that file.
+
+To delete a list of files and folders, including all files from subdirectories, without prompting you for every single entry, you can
+use the -r option for recursive, and the -f option to force it. If you are one directory above my-files, type:
+
+rm -rf my-files
+
+Note :  Be careful when deleting a file with rm -rf. You can delete all the files in your Operating System if you go to the root of
+        your computer and run the command.
+
+
+Display File Content
+--------------------
+cat <filename> : Display the file content in the terminal.
+
+Note : If the specified file is too large, you won't be able to see all the content on the screen. To be able to see all the content
+       page by page, you have to use the more or less commands.
+
+more <filename> : Display the content of a file on the screen and prompt you to scroll through the file a screen at a time.
+
+
+Coping File
+-----------
+cp <coping filename.Extension> <coping folder path>
+
+Exmaple:-
+
+Use the cp command to copy a file. First, let's create a new file:
+
+$ touch hello.txt
+
+Open the file and add some text. You can use a text editor (VS Code) to add the text and afterward run the following command:
+
+$ cp hello.txt copied.txt
+
+By running this command, a new file (copied.txt) has been created, and we can verify that by running ls command.
+
+You can also copy the file into another directory:
+
+$ mkdir copied-files
+$ cp hello.txt copied-files/
+
+Notice the / (slash) at the end of a directory. That makes sure the path is a directory, so if the directory doesn't exist, you will get an error.
+
+Now navigate to the copied-files folder and run ls to make sure the copied file is there.
+
+Finally, we can copy directories that are not empty by running the following command:
+
+$ cp -r
+
+Moving Files
+------------
+mv <moving_filename> <moving folder path> : We can move a file into a different directory using the mv command.
+
+Exmaple:- 
+
+You should have just one file called awesome.txt. You can rename it by moving it into the same folder:
+
+$ mv awesome.txt uncool.txt
+
+Now you should have one file called uncool.txt. Move the file into another directory. Instead of specifying a new name for the file,
+specify a new path:
+
+$ mv uncool.txt /Users/my_name/Desktop
+
+
+------------------------------------------------------------------------------------------------------------------------------------------
+Git Work Flow
+-------------
+
+
+
+Git Commands
+------------
+We have to setup git in our project folder for that we use a command.All the histories are saved in the folder called .git in our 
+project. That is a hidden folder and do not make any changes to that folder if we make any changes then it will crash then our whole
+history might go.
+
+Git repositories on your local computer will be described as local repositories, while GitHub repositories on the web will be
+described as remote repositories.
+
+git init (git initialisation) - This command will initialise git in our project.After this only git is goint to start watching our 
+                                project changes.
+
+git status - This will shows/displays all changes that we have made to our project.This changes are untracked(displayed in red color)
+             so we need to track it.
+
+git diff - This will shows the changes made to the commited file.
+
+git add . - all the changes that we made as untracked(dislayed in red color) in our project will get tracked (displayed in green color). 
+
+Note: . means all . If you dont want to track all file then you can track it individually by its name like git add text.txt
+
+git restore --staged .  - This will untrack or unstage all changes that made previous using add command.
+
+Note: use individual file name instead of . if you dont want to untrack all changes that made previously.
+
+git commit -m " message " - This will save the changes that are tracked previously.Now the history is saved permanently.
+
+Note: -m refers to message
+
+git log - This will show/display history of commits that we have done till.
+
+git reset commit_id - This will delete/remove commits from the history.
+
+Note: select commit_id of just below commit in your history to delete the commit that you desired.All commits after that commit_id will
+      deleted or removed.
+
+git stash - This will move tracked file and add to a seperate area . These changes are not going to shown in history as well.
+
+git stash pop - This command will get back all the files that are stored in stash area.
+
+git stash clear - This will delete or clear all changes that we are stored in stash area/separate area.
+
+
+Note: After staging and commiting we have to connect our locol repo to the remote repo to upload changes that we made in our local repo.
+
+
+GitHub Attaching
+-----------------
+
+Create a new remote repository in github.Then we can see a link of that local repository. We need to connect that remote repository with
+our local project.
+
+we can connect using this command:
+      git remote add origin github_repo_url
+
+Note: remote means you are working with urls.
+      add means you are adding new url
+      origin basicaly means what is the name of the url that you are going to add
+
+git remote -v : This will show all the url's that are attached to that folder.
+
+
+git push origin master : This command will push the commits to the local repository which we are connected to the github.
+
+Note: master is default main branch.
+
+
+Branching in Git
+----------------
+Branches in Git are used to create separate lines of development within a project. They allow you to work on different features,
+bug fixes, or experiments in isolation from the main codebase, making it easier to manage and merge changes without disrupting the
+stable version of the project.
+
+Create New Branch:
+git branch branch_name - This will create a new branch
+
+Change selector from standing branch:
+git checkout branch_name - This will move selector/head to this branch.Then the commits are added to this branch
+
+Merge the new branch to main branch:
+git merge branch_name - this will merge all the commits of new branch to main branch.
+
+
+Working with Open Source Projects in Github
+-------------------------------------------
+If you want to work on a github project you can't able to directly access or modify it. So fist ofall need to fork it to your account
+then you can pull the code and make changes. Its not going to change the main project its only reflect to your copy project.
+
+You can make changes to that project with the permission of the account owner using merge your pull request.If he approves then the
+changes that you made reflects the main project as well.
+
+how to pull code after forking:
+git pull forked_rep_url
+
+This will downlord that project to your device and you can now work on that.
+
+Note: one branch means one pull request so create new branch to all features or bugs instead of doing it one.
+
+Removing a commit from the pull request by force pushing to it
+--------------------------------------------------------------
+If you want to remove a commit from your pull request then first you have to reset that branch from local history and you have to
+force push to the pull request  using command git push origin branch_name -f
+
+Need to learn fetch upsteam updated manually
+--------------------------------------------
+git pull upstream main - This will pull the updated branches that our forked clone dont have.Then push the changed to github
+
+Note: you can also do that from github repository using fetch upsteam button.This will automatically fetch updated branch and
+      keep uptodate
+
+Squashing Commits
+-----------------
+If you want to squash 1,2,3 or n number of commits into a single one using command:
+git rebase -i commit_id - This will take you to interactive enivornment with all commits above the given commit_id with 2 option 
+                          pick or s (sqaush). So change the pick one to s and enter .This s will merged to the picked one.
+
+Note: ESC(escape) :x to exit. Then a commit message section will get displayed.Enter message for new commit and enter. 
+
+Note: -i means interactive enviornment.
+
+
+Note : If you should just plan to quit vi if you accidentally get into it. To do so, type :q!
